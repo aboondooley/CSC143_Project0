@@ -3,7 +3,7 @@ package hello;
 public class Hello {
     /* YOUR CODE HERE */
     // field
-    private String name;
+    private String greetMe;
 
     public static void main(String[] args) {
         Hello hello = new Hello();
@@ -16,19 +16,20 @@ public class Hello {
 
     // Consutructor
     public Hello() {
-        // I am not sure about this one
+      String greetMe = "World";
     }
 
     //Constructor
     public Hello(String inputName) {
-        String name = inputName;
+        String greetMe = inputName;
     }
 
     public String greeting() {
         /* YOUR CODE HERE */
+        return "Hello, " + greetMe + "!";
     }
 
     public String toString() {
-        /* YOUR CODE HERE */
+        return greeting();
     }
 }
