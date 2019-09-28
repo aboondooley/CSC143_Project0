@@ -2,7 +2,8 @@ package hello;
 
 public class Hello {
     /* YOUR CODE HERE */
-    String name = name;
+    // field
+    private String name;
 
     public static void main(String[] args) {
         Hello hello = new Hello();
@@ -15,12 +16,12 @@ public class Hello {
 
     // Consutructor
     public Hello() {
-        return ("Hello, World!");
+        // I am not sure about this one
     }
 
     //Constructor
-    public Hello(String name) {
-        return ("Hello, " + name + "!");
+    public Hello(String inputName) {
+        String name = inputName;
     }
 
     public String greeting() {

@@ -85,11 +85,11 @@ public class RangeTest {
         assertEquals(-1, a.compareTo((Range) b));
 
         Comparable<Range> i = new Range(0, 5, 2);
-        Comparable<Range> j = new Range(2, 4, 2);
+        Comparable<Range> j = new Range(2, 5, 2);
         assertEquals(-1, i.compareTo((Range) j));
 
         Comparable<Range> y = new Range(5, 10, 4);
-        Comparable<Range> z = new Range(6, 10, 2);
+        Comparable<Range> z = new Range(6, 10, 3);
         assertEquals(-1, y.compareTo((Range) z));
     }
 
@@ -100,11 +100,11 @@ public class RangeTest {
         assertEquals(1, b.compareTo((Range) a));
 
         Comparable<Range> i = new Range(0, 5, 2);
-        Comparable<Range> j = new Range(2, 4, 2);
+        Comparable<Range> j = new Range(2, 5, 2);
         assertEquals(1, j.compareTo((Range) i));
 
         Comparable<Range> y = new Range(5, 10, 4);
-        Comparable<Range> z = new Range(6, 10, 2);
+        Comparable<Range> z = new Range(6, 11, 2);
         assertEquals(1, z.compareTo((Range) y));
     }
 
@@ -119,10 +119,10 @@ public class RangeTest {
         Comparable<Range> c = new Range(0, 6);
         assertEquals(0, a.compareTo((Range) c));
 
-        Comparable<Range> d = new Range(0, 6, 2);
+        Comparable<Range> d = new Range(0, 6, 5);
         assertEquals(0, c.compareTo((Range) d));
 
-        Comparable<Range> y = new Range(5, 12, 2);
+        Comparable<Range> y = new Range(3, 12, 2);
         Comparable<Range> z = new Range(4, 12, 4);
         assertEquals(0, y.compareTo((Range) z));
     }
