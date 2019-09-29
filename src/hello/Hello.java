@@ -1,8 +1,9 @@
 package hello;
 
 public class Hello {
-    /* YOUR CODE HERE */
-    // field
+    // This class creates a Hello object which can store a name and then greet this name or the world.
+
+    // There is only one field, the name to be greeted.
     private String greetMe;
 
     public static void main(String[] args) {
@@ -14,22 +15,24 @@ public class Hello {
         System.out.println("General Kenobi!");
     }
 
-    // Consutructor
     public Hello() {
+        // Here is our first constructor, used if no name is given
       String greetMe = "World";
     }
 
-    //Constructor
     public Hello(String inputName) {
+        // Second constructor, overrides the first when a name is given
         String greetMe = inputName;
     }
 
+    // instance methods
     public String greeting() {
-        /* YOUR CODE HERE */
+        // This instance method prints a greeting using the either the input name or the world
         return "Hello, " + greetMe + "!";
     }
 
-    public String toString() {
+  public String toString() {
+        // This instance method prints the same greeting as the greetings function for the custom toString() method
         return greeting();
     }
 }
