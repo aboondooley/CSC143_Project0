@@ -8,6 +8,15 @@ public class Range implements Iterator<Integer>, Comparable<Range> {
     private int start;
     private int stop;
     private int step;
+    public int here = -1;
+
+    public static void main(String[] args){
+        Range test = new Range(0, 5, 1);
+        for (int j = 0; j <= 5; j++) {
+            System.out.println(test.hasNext());
+            System.out.println(test.next());
+        }
+    }
 
     public Range(int inputStop) {
         /* YOUR CODE HERE */
@@ -33,17 +42,33 @@ public class Range implements Iterator<Integer>, Comparable<Range> {
 
     public boolean hasNext() {
         /* YOUR CODE HERE */
-        //for (int i = start; i <= stop; i+=step){
-        //    return true;
-       // }
-       // return false;
-    }
+        if (here < start){
+            // here is smaller than start
+            here = start;
+        }
+        // Next, return here is it is still in range, and return either true or false
+        if (here + step < stop){
+            return true;
+        }
+          return false;
+        }
 
     public Integer next() {
         /* YOUR CODE HERE */
-        //for (int i = start; i <= stop; i+=step){
-        //    return ;
+        // First, set here to the next number
+        if (here < start){
+            // here is smaller than start
+            here = start+step;
+        } else { // here is equal to or past start
+            here+=step;
         }
+        // Next, return here is it is still in range, and return either an exception or the Integer  next
+        if (here < stop){
+            return (Integer) here;
+        } else {
+            throw new NoSuchElementException();
+        }
+
     }
 
     public void remove() {
@@ -55,7 +80,8 @@ public class Range implements Iterator<Integer>, Comparable<Range> {
         /* YOUR CODE HERE */
         /* Comparitor returns 0, 1, -1 depending on the two integers */
         if (this.start >= other.start && this.stop > other.stop){
-            return 1;
+            //
+            return this.start;
         } else if (this.start <= other.start && this.stop < other.stop){
             return -1;
         } else {

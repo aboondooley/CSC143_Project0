@@ -17,20 +17,21 @@ public class Hello {
 
     public Hello() {
         // Here is our first constructor, used if no name is given
-      String greetMe = "World";
+      greetMe = "World";
     }
 
     public Hello(String inputName) {
         // Second constructor, overrides the first when a name is given
-        String greetMe = inputName;
+        greetMe = inputName;
     }
 
     // instance methods
     public String greeting() {
         // This instance method prints a greeting using the either the input name or the world
-        return "Hello, " + greetMe + "!";
+        return ("Hello, " + greetMe + "!");
     }
 
+    @Override
   public String toString() {
         // This instance method prints the same greeting as the greetings function for the custom toString() method
         return greeting();
