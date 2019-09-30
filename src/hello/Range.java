@@ -12,22 +12,24 @@ public class Range implements Iterator<Integer>, Comparable<Range> {
 
     public static void main(String[] args){
         Range test = new Range(0, 5, 1);
-        for (int j = 0; j <= 5; j++) {
-            System.out.println(test.hasNext());
+        Range test2 = new Range(0, 6, 2);
+        for (int j = 0; j < 5; j++) {
+            //System.out.println(test.hasNext());
             System.out.println(test.next());
         }
+        System.out.println(test2.compareTo(test));
     }
 
     public Range(int inputStop) {
         /* YOUR CODE HERE */
-        stop = inputStop;
+        stop = inputStop - 1;
         int start = 0;
         int step = 1;
     }
 
     public Range(int inputStart, int inputStop) {
         /* YOUR CODE HERE */
-        stop = inputStop;
+        stop = inputStop - 1;
         start = inputStart;
         int step = 1;
     }
@@ -36,7 +38,12 @@ public class Range implements Iterator<Integer>, Comparable<Range> {
         /* YOUR CODE HERE */
         start = inputStart;
         step = inputStep;
-        stop = inputStop - ((inputStop-inputStart)%inputStep);
+        if ((inputStart - inputStop)%inputStep==0){
+            stop = inputStop - inputStep;
+        } else {
+            stop = (inputStop - ((inputStop-inputStart)%inputStep));
+        }
+
 
     }
 
@@ -45,9 +52,11 @@ public class Range implements Iterator<Integer>, Comparable<Range> {
         if (here < start){
             // here is smaller than start
             here = start;
+        } else {
+            here += step;
         }
         // Next, return here is it is still in range, and return either true or false
-        if (here + step < stop){
+        if (here <= stop){
             return true;
         }
           return false;
@@ -58,12 +67,12 @@ public class Range implements Iterator<Integer>, Comparable<Range> {
         // First, set here to the next number
         if (here < start){
             // here is smaller than start
-            here = start+step;
+            here = start;
         } else { // here is equal to or past start
             here+=step;
         }
         // Next, return here is it is still in range, and return either an exception or the Integer  next
-        if (here < stop){
+        if (here <= stop){
             return (Integer) here;
         } else {
             throw new NoSuchElementException();
@@ -79,10 +88,9 @@ public class Range implements Iterator<Integer>, Comparable<Range> {
     public int compareTo(Range other) {
         /* YOUR CODE HERE */
         /* Comparitor returns 0, 1, -1 depending on the two integers */
-        if (this.start >= other.start && this.stop > other.stop){
-            //
-            return this.start;
-        } else if (this.start <= other.start && this.stop < other.stop){
+        if (this.start > other.start && this.stop >= other.stop){
+          return 1;
+        } else if (this.start < other.start && this.stop <= other.stop){
             return -1;
         } else {
             return 0;
