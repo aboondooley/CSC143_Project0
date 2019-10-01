@@ -44,20 +44,17 @@ public class Range implements Iterator<Integer>, Comparable<Range> {
     }
 
     public boolean hasNext() {
-        //
-        if (here < start){
-
-            here = start;
-        } else {
-            here += step;
-        }
-        // Next, return `here` if it is still in range, and return either true or false
-        // Do not step
-        if (here <= stop){
+        // This method does not step
+        if (here < start & (start<stop)){
+            // If we haven't reached `start` yet, and `stop` isn't zero, there has to be another element
             return true;
+        } else if (here + step <= stop){
+            // If the next step is less than `stop`, we can step again
+            return true;
+        } else { // Otherwise, we cannot step farther
+            return false;
         }
-          return false;
-        }
+    }
 
     public Integer next() {
         if (here < start){
