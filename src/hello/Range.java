@@ -4,58 +4,55 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class Range implements Iterator<Integer>, Comparable<Range> {
-    /* YOUR CODE HERE */
+    // This class creates a range object which can be iterated through, can return elements and warn if there is another element.
+    // It also has functionality to compare two ranges
+
+
+    // Initializing our markers
+    // `here` (the place along the range where we are at) needs to be less than 0.
+    // This works because we are not creating negative ranges in this project
     private int start;
     private int stop;
     private int step;
     public int here = -1;
 
-    public static void main(String[] args){
-        Range test = new Range(0, 5, 1);
-        Range test2 = new Range(0, 6, 2);
-        for (int j = 0; j < 5; j++) {
-            //System.out.println(test.hasNext());
-            System.out.println(test.next());
-        }
-        System.out.println(test2.compareTo(test));
-    }
 
     public Range(int inputStop) {
-        /* YOUR CODE HERE */
+        // `Stop` = (`stop` - 1) because the range creator is not-inclusive
         stop = inputStop - 1;
         start = 0;
         step = 1;
     }
 
     public Range(int inputStart, int inputStop) {
-        /* YOUR CODE HERE */
         stop = inputStop - 1;
         start = inputStart;
         step = 1;
     }
 
     public Range(int inputStart, int inputStop, int inputStep) {
-        /* YOUR CODE HERE */
         start = inputStart;
         step = inputStep;
         if ((inputStart - inputStop)%inputStep==0){
+            // If `stop` is a multiple of `step`, then stop one short
             stop = inputStop - inputStep;
         } else {
+            // If `stop` is not a multiple of `step` then keep stepping but stop before passing `stop`
             stop = (inputStop - ((inputStop-inputStart)%inputStep));
         }
-
 
     }
 
     public boolean hasNext() {
-        /* YOUR CODE HERE */
+        //
         if (here < start){
-            // here is smaller than start
+
             here = start;
         } else {
             here += step;
         }
-        // Next, return here is it is still in range, and return either true or false
+        // Next, return `here` if it is still in range, and return either true or false
+        // Do not step
         if (here <= stop){
             return true;
         }
@@ -63,15 +60,14 @@ public class Range implements Iterator<Integer>, Comparable<Range> {
         }
 
     public Integer next() {
-        /* YOUR CODE HERE */
-        // First, set here to the next number
         if (here < start){
-            // here is smaller than start
+            // For when `here` is smaller than `start`, get caught up to `start`
             here = start;
-        } else { // here is equal to or past start
+        } else { // Already at or past `start` then step once
             here+=step;
         }
-        // Next, return here if it is still in range, and return either an exception or the Integer  next
+        // The same concept as hasNext(), except the Integer or an exception will be returned
+        // AND we have actually stepped, rather than looking ahead
         if (here <= stop){
             return (Integer) here;
         } else {
@@ -86,13 +82,14 @@ public class Range implements Iterator<Integer>, Comparable<Range> {
 
     @Override
     public int compareTo(Range other) {
-        /* YOUR CODE HERE */
-        /* Comparitor returns 0, 1, -1 depending on the two integers */
+        // Compare two ranges
         if (this.start > other.start && this.stop >= other.stop){
+            // This range starts later than the other range and also ends later or at the same spot
           return 1;
         } else if (this.start < other.start && this.stop <= other.stop){
+            // This range starts sooner or at the same spot and also ends sooner
             return -1;
-        } else {
+        } else { // Either `start` and `stop` are exactly the same or one range has a smaller `start` AND a larger `stop`
             return 0;
         }
 
