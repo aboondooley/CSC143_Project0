@@ -30,6 +30,7 @@ public class RangeTest {
     @Test(expected = NoSuchElementException.class)
     public void RangeTestThrowsWhenEmpty() {
         Iterator i = new Range(0);
+
         i.next();
     }
 

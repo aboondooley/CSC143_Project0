@@ -23,15 +23,15 @@ public class Range implements Iterator<Integer>, Comparable<Range> {
     public Range(int inputStop) {
         /* YOUR CODE HERE */
         stop = inputStop - 1;
-        int start = 0;
-        int step = 1;
+        start = 0;
+        step = 1;
     }
 
     public Range(int inputStart, int inputStop) {
         /* YOUR CODE HERE */
         stop = inputStop - 1;
         start = inputStart;
-        int step = 1;
+        step = 1;
     }
 
     public Range(int inputStart, int inputStop, int inputStep) {
@@ -71,7 +71,7 @@ public class Range implements Iterator<Integer>, Comparable<Range> {
         } else { // here is equal to or past start
             here+=step;
         }
-        // Next, return here is it is still in range, and return either an exception or the Integer  next
+        // Next, return here if it is still in range, and return either an exception or the Integer  next
         if (here <= stop){
             return (Integer) here;
         } else {
