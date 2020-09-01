@@ -2,4 +2,4 @@ out/
 *.class
 .idea/
 .gitignore
-README
+README.md
